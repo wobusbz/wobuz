@@ -22,9 +22,7 @@ local mode_adapters = {
 
 local defaults = {
     insert_mode = {
-        -- Move current line / block with Alt-j/k ala vscode.
         ["<A-j>"] = "<Esc>:m .+1<CR>==gi",
-        -- Move current line / block with Alt-j/k ala vscode.
         ["<A-k>"] = "<Esc>:m .-2<CR>==gi",
         -- navigation
         ["<A-Up>"] = "<C-\\><C-N><C-w>k",
@@ -60,7 +58,7 @@ local defaults = {
         -- QuickFix
         ["]q"] = ":cnext<CR>",
         ["[q"] = ":cprev<CR>",
-        ["<C-q>"] = ":call QuickFixToggle()<CR>",
+--        ["<C-q>"] = ":call QuickFixToggle()<CR>",
 
         -- nvim-tree
         ["<leader>e"] = ":NvimTreeToggle<CR>",
@@ -128,7 +126,7 @@ if vim.fn.has "mac" == 1 then
     defaults.normal_mode["<A-Right>"] = defaults.normal_mode["<C-Right>"]
 end
 
-keymaps = defaults or {}
+local keymaps = defaults or {}
 for mode, mappings in pairs(keymaps) do
     mode = mode_adapters[mode] or mode
     for key, val in pairs(mappings) do
