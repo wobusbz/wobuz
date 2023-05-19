@@ -58,7 +58,7 @@ local defaults = {
         -- QuickFix
         ["]q"] = ":cnext<CR>",
         ["[q"] = ":cprev<CR>",
---        ["<C-q>"] = ":call QuickFixToggle()<CR>",
+        --        ["<C-q>"] = ":call QuickFixToggle()<CR>",
 
         -- nvim-tree
         ["<leader>e"] = ":NvimTreeToggle<CR>",

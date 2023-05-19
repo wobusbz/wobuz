@@ -8,7 +8,32 @@ return {
             vim.notify("bufferline nof found")
             return
         end
-
+        local function is_ft(b, ft) return vim.bo[b].filetype == ft end
+        local function diagnostics_indicator(num, _, diagnostics, _)
+            local result = {}
+            local symbols = {error = "", warning = "", info = ""}
+            if not true then return "(" .. num .. ")" end
+            for name, count in pairs(diagnostics) do
+                if symbols[name] and count > 0 then
+                    table.insert(result, symbols[name] .. " " .. count)
+                end
+            end
+            result = table.concat(result, " ")
+            return #result > 0 and result or ""
+        end
+        local function custom_filter(buf, buf_nums)
+            local logs = vim.tbl_filter(function(b)
+                return is_ft(b, "log")
+            end, buf_nums or {})
+            if vim.tbl_isempty(logs) then return true end
+            local tab_num = vim.fn.tabpagenr()
+            local last_tab = vim.fn.tabpagenr "$"
+            local is_log = is_ft(buf, "log")
+            if last_tab == 1 then return true end
+            -- only show log buffers in secondary tabs
+            return (tab_num == last_tab and is_log) or
+                       (tab_num ~= last_tab and not is_log)
+        end
         local status_ok, bufferline = pcall(require, "bufferline")
         if not status_ok then return end
 
@@ -16,8 +41,8 @@ return {
             options = {
                 mode = "buffers", -- set to "tabs" to only show tabpages instead
                 numbers = "none", -- can be "none" | "ordinal" | "buffer_id" | "both" | function
-                close_command = function(bufnr) -- can be a string | function, see "Mouse actions"
-                    M.buf_kill("bd", bufnr, false)
+                close_command = function(bufnum)
+                    require('bufdelete').bufdelete(bufnum, true)
                 end,
                 right_mouse_command = "vert sbuffer %d", -- can be a string | function, see "Mouse actions"
                 left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
