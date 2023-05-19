@@ -70,16 +70,17 @@ local defaults = {
         ["<C-s>"] = "<Esc>:w<CR>",
 
         -- telescope
-        ["<leader>ff"] = "<cmd>Telescope find_files<cr>",
-        ["<leader>fl"] = "<cmd>Telescope live_grep<cr>",
-        ["<leader>fg"] = "<cmd>Telescope grep_string<cr>",
+        ["<C-p>"] = "<cmd>Telescope find_files<cr>",
+        ["<C-f>"] = "<cmd>Telescope live_grep<cr>",
+        ["<S-F>"] = "<cmd>Telescope grep_string<cr>",
         ["<leader>fb"] = "<cmd>Telescope buffers<cr>",
         ["<leader>fh"] = "<cmd>Telescope help_tags<cr>",
 
         -- git
         ["<leader>gl"] = "<cmd>lua require 'gitsigns'.blame_line()<cr>",
 
-        ["<C-q>"] = ":wqa<cr>"
+        ["<C-q>"] = ":wqa<cr>",
+        ["C-/"] = "gcc"
     },
 
     term_mode = {
