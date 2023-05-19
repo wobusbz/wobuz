@@ -1,11 +1,11 @@
 return {
+    -- nvim-cmp
     "hrsh7th/nvim-cmp", -- The completion plugin
-    "hrsh7th/cmp-buffer", -- buffer completions
-    "hrsh7th/cmp-path", -- path completions
-    "saadparwaiz1/cmp_luasnip", -- snippet completions
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-nvim-lua",
-
+    dependencies = {
+        'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path',
+        'hrsh7th/cmp-cmdline', 'hrsh7th/nvim-cmp', 'hrsh7th/cmp-vsnip',
+        'hrsh7th/vim-vsnip', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip'
+    },
     config = function()
         local cmp_status_ok, cmp = pcall(require, "cmp")
         if not cmp_status_ok then return end
@@ -19,7 +19,7 @@ return {
             local col = vim.fn.col "." - 1
             return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
         end
-        --   פּ ﯟ   some other good icons
+
         local kind_icons = {
             Text = "",
             Method = "m",
