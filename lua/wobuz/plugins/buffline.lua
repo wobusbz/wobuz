@@ -3,11 +3,6 @@ return {
     version = "*",
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
-        local status, buffline = pcall(require, "bufferline")
-        if not status then
-            vim.notify("bufferline nof found")
-            return
-        end
         local function is_ft(b, ft) return vim.bo[b].filetype == ft end
         local function diagnostics_indicator(num, _, diagnostics, _)
             local result = {}
@@ -34,7 +29,7 @@ return {
             return (tab_num == last_tab and is_log) or
                        (tab_num ~= last_tab and not is_log)
         end
-        function buf_kill(kill_command, bufnr, force)
+        local function buf_kill(kill_command, bufnr, force)
             kill_command = kill_command or "bd"
 
             local bo = vim.bo
@@ -125,12 +120,7 @@ return {
                 close_icon = "",
                 left_trunc_marker = "",
                 right_trunc_marker = "",
-                --- name_formatter can be used to change the buffer's label in the bufferline.
-                --- Please note some names can/will break the
-                --- bufferline so use this at your discretion knowing that it has
-                --- some limitations that will *NOT* be fixed.
                 name_formatter = function(buf) -- buf contains a "name", "path" and "bufnr"
-                    -- remove extension from markdown files for example
                     if buf.name:match "%.md" then
                         return vim.fn.fnamemodify(buf.name, ":t:r")
                     end

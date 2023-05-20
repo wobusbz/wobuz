@@ -1,28 +1,21 @@
 return {
-    "neovim/nvim-lspconfig",
+    "VonHeikemen/lsp-zero.nvim",
+    dependencies = {
+        "lukas-reineke/lsp-format.nvim", "neovim/nvim-lspconfig",
+        "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim",
+        "hrsh7th/nvim-cmp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path",
+        "saadparwaiz1/cmp_luasnip", "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-nvim-lua", "L3MON4D3/LuaSnip",
+        "rafamadriz/friendly-snippets", "onsails/lspkind-nvim"
+    },
     config = function()
-        local function lsp_highlight_document(client)
-            -- Set autocommands conditional on server_capabilities
-            local status_ok, illuminate = pcall(require, "illuminate")
-            if not status_ok then return end
-            illuminate.on_attach(client)
-            -- end
-        end
-
-        -- Add additional capabilities supported by nvim-cmp
-        local capabilities = require("cmp_nvim_lsp").default_capabilities()
-       
-        local cmp = require('cmp')
-        local lspconfig = require('lspconfig')
-        lspconfig.gopls.setup({
-            on_attach = function(client, buff)
-                -- require('lsp_signature').on_attach() -- 如果你想使用函数签名插件，可以添加这行代码
-                lsp_highlight_document(client)
-            end,
-            settings = {
-                gopls = {analyses = {unusedparams = true}, staticcheck = true}
-            },
-            capabilities = capabilities
-        })
+        local lsp = require("lsp-zero")
+        lsp.preset("recommended")
+        lsp.on_attach(function(client, bufnr)
+            require("lsp-format").on_attach(client, bufnr)
+        end)
+        lsp.nvim_workspace()
+        lsp.setup()
+        vim.diagnostic.config({virtual_text = true})
     end
 }
