@@ -61,7 +61,7 @@ local defaults = {
         --        ["<C-q>"] = ":call QuickFixToggle()<CR>",
 
         -- nvim-tree
-        ["<leader>e"] = ":NvimTreeToggle<CR>",
+        ["<leader>e"] = "<cmd>NvimTreeToggle<CR>",
         ["<S-h>"] = "<cmd>BufferLineCyclePrev<cr>",
         ["<S-l>"] = "<cmd>BufferLineCycleNext<cr>",
         ["<leader>h"] = "<cmd>BufferLineCloseLeft<cr>",

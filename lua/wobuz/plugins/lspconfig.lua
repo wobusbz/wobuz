@@ -15,6 +15,9 @@ return {
             require("lsp-format").on_attach(client, bufnr)
         end)
         lsp.nvim_workspace()
+        lsp.settings = {
+            gopls = {analyses = {unusedparams = false}, staticcheck = false}
+        }
         lsp.setup()
         vim.diagnostic.config({virtual_text = true})
     end
