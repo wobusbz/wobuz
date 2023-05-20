@@ -1,6 +1,9 @@
 return {
     "glepnir/lspsaga.nvim",
-    dependencies = {{"nvim-tree/nvim-web-devicons"}},
+    event = "LspAttach",
+    dependencies = {
+        {"nvim-tree/nvim-web-devicons"}, {"nvim-treesitter/nvim-treesitter"}
+    },
     config = function()
         local status, lspsaga = pcall(require, 'lspsaga')
         if not status then
