@@ -1,4 +1,5 @@
 require("wobuz.config.options")
+
 require("wobuz.config.keymaps")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

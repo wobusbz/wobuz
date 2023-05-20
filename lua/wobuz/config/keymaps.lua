@@ -80,7 +80,16 @@ local defaults = {
         ["<leader>gl"] = "<cmd>lua require 'gitsigns'.blame_line()<cr>",
 
         ["<C-q>"] = ":wqa<cr>",
-        ["C-/"] = "gcc"
+
+        -- lspsaga
+        ["gh"] = "<cmd>Lspsaga lsp_finder<CR>",
+        ["<leader>ca"] = "<cmd>Lspsaga code_action<cr>",
+        ["gr"] = "<cmd>Lspsaga rename<cr>",
+
+
+        
+        ["<leader>d"] = "ddkk<cr>",
+        ["<Esc>"] = "<cmd>nohl<cr>"
     },
 
     term_mode = {
@@ -94,7 +103,8 @@ local defaults = {
     visual_mode = {
         -- Better indenting
         ["<"] = "<gv",
-        [">"] = ">gv"
+        [">"] = ">gv",
+        ["<leader>ca"] = "<cmd>Lspsaga code_action<CR>"
 
         -- ["p"] = '"0p',
         -- ["P"] = '"0P',
