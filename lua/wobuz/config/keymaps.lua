@@ -35,7 +35,9 @@ local defaults = {
     ["<leader>fg"] = "<cmd>Telescope grep_string<cr>",
     ["<leader>fb"] = "<cmd>Telescope buffers<cr>",
     ["<leader>fh"] = "<cmd>Telescope help_tags<cr>",
-    ["<C-q>"] = ":wqa<cr>"
+    ["<C-q>"] = ":wqa<cr>",
+    ["<C-l>"] = "<Right>",
+    ["<C-h>"] = "<Left>"
   },
   normal_mode = {
     -- Better window movement
