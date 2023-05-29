@@ -8,8 +8,9 @@ return {
                 clangd = require("wobuz.plugins.lsp.cpp")
             }
             local lspconfig = require "lspconfig"
+            local lsp = require("wobuz.plugins.lsp.lsp")
             for name, config in pairs(servers) do
-                config.on_setup(lspconfig[name])
+                config.on_setup(lspconfig[name], lsp)
             end
         end
     }
