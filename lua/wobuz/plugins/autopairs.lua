@@ -1,5 +1,6 @@
 return {
     'windwp/nvim-autopairs',
+    event = "InsertEnter",
     config = function()
         -- Setup nvim-cmp.
         local status_ok, npairs = pcall(require, "nvim-autopairs")

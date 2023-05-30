@@ -2,6 +2,8 @@ return {
     "nvim-tree/nvim-tree.lua",
     tag = "nightly",
     dependencies = {"nvim-tree/nvim-web-devicons"},
+    cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeFocus", "NvimTreeFindFileToggle" },
+    event = "User DirOpened",
     config = function()
         require("nvim-tree").setup {
             update_focused_file = {enable = true, update_cwd = true},
