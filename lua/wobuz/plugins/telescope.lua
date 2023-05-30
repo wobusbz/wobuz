@@ -3,7 +3,7 @@ return {
     tag = '0.1.1',
     -- or                              , branch = '0.1.1',
     dependencies = {'nvim-lua/plenary.nvim'},
-    lazy = true,
+    event = "VeryLazy",
     cmd = "Telescope",
     config = function()
         local status, telecope = pcall(require, 'telescope')

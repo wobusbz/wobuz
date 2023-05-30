@@ -1,11 +1,11 @@
 return {
     "nvim-treesitter/nvim-treesitter",
     -- build = ":TSUpdate",
+    event = "User FileOpened",
     cmd = {
         "TSInstall", "TSUninstall", "TSUpdate", "TSUpdateSync", "TSInstallInfo",
         "TSInstallSync", "TSInstallFromGrammar"
     },
-    event = "User FileOpened",
     config = function()
         require'nvim-treesitter.configs'.setup {
             -- A list of parser names, or "all" (the five listed parsers should always be installed)
