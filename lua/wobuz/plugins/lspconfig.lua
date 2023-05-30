@@ -1,6 +1,12 @@
 return {
-    {"williamboman/mason.nvim", opts = {enure_installed = {"gopls"}}}, {
+    {
+        "williamboman/mason.nvim",
+        event = "User FileOpened",
+        lazy = true,
+        opts = {enure_installed = {"gopls"}}
+    }, {
         "neovim/nvim-lspconfig",
+        lazy = true,
         config = function()
             local servers = {
                 gopls = require("wobuz.plugins.lsp.gopls"),

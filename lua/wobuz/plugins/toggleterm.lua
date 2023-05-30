@@ -1,6 +1,11 @@
 return {
     'akinsho/toggleterm.nvim',
     version = "*",
+    cmd = {
+        "ToggleTerm", "TermExec", "ToggleTermToggleAll",
+        "ToggleTermSendCurrentLine", "ToggleTermSendVisualLines",
+        "ToggleTermSendVisualSelection"
+    },
     config = function()
         local status_ok, toggleterm = pcall(require, 'toggleterm')
         if not status_ok then
