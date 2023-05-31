@@ -73,7 +73,6 @@ local defaults = {
         ["<leader>fh"] = "<cmd>Telescope help_tags<cr>",
         -- git
         ["<leader>gl"] = "<cmd>lua require 'gitsigns'.blame_line()<cr>",
-        ["<C-q>"] = ":wqa<cr>",
         -- lspsaga
         ["<leader>g"] = "<cmd>Lspsaga lsp_finder<CR>",
         ["<leader>c"] = "<cmd>Lspsaga code_action<cr>",
@@ -85,7 +84,6 @@ local defaults = {
         ["gd"] = "<cmd>lua vim.lsp.buf.definition()<cr>",
         ["gD"] = "<cmd>lua vim.lsp.buf.declaration()<cr>",
         ["gr"] = "<cmd>lua vim.lsp.buf.references()<cr>",
-        -- ["gd"] = "<cmd>lua require'telescope.builtin'.lsp_definitions({ initial_mode = 'normal', })<CR>",
         ["gs"] = "<cmd>lua vim.lsp.buf.signature_help()<cr>",
         ["<leader>w"] = "<cmd>Lspsaga hover_doc ++keep<CR>"
     },

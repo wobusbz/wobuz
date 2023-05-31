@@ -10,8 +10,9 @@ return {
                 null_ls.builtins.formatting.gofumpt, -- 格式化代码
                 null_ls.builtins.formatting.goimports,
                 null_ls.builtins.formatting.golines,
-                null_ls.builtins.formatting.stylua,
-                null_ls.builtins.formatting.clang_format
+                null_ls.builtins.formatting.clang_format,
+                null_ls.builtins.formatting.rustfmt,
+                null_ls.builtins.formatting.lua_format,
             },
             debug = false,
             on_attach = function(client, bufnr)

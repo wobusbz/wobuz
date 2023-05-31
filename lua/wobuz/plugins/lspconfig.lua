@@ -13,7 +13,10 @@ return {
             local servers = {
                 gopls = require("wobuz.plugins.lsp.gopls"),
                 lua_ls = require("wobuz.plugins.lsp.lua_ls"),
-                clangd = require("wobuz.plugins.lsp.cpp")
+                clangd = require("wobuz.plugins.lsp.cpp"),
+                bufls = require("wobuz.plugins.lsp.protobuf"),
+                sqlls = require("wobuz.plugins.lsp.sql"),
+                rust_analyzer = require("wobuz.plugins.lsp.rust"),
             }
             local lspconfig = require "lspconfig"
             local lsp = require("wobuz.plugins.lsp.lsp")
