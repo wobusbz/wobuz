@@ -5,7 +5,7 @@ M.on_setup = function(lsp, m)
         capabilities = m.capabilities,
         cmd = {"bufls", "serve"},
         filetypes = {"proto"},
-        root_dir = m.utils.root_pattern("buf.work.yaml", ".git"),
+        root_dir = m.utils.root_pattern("buf.work.yaml", ".git")
     }
 end
 return M

@@ -4,8 +4,8 @@ return {
     event = {"InsertEnter", "CmdlineEnter"},
     dependencies = {
         'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path',
-        'hrsh7th/cmp-cmdline', 'hrsh7th/nvim-cmp', 'hrsh7th/cmp-vsnip',
-        'hrsh7th/vim-vsnip', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip'
+        'hrsh7th/cmp-cmdline', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip',
+        'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip', "onsails/lspkind.nvim"
     },
     config = function()
         local cmp_status_ok, cmp = pcall(require, "cmp")
@@ -14,7 +14,12 @@ return {
         local snip_status_ok, luasnip = pcall(require, "luasnip")
         if not snip_status_ok then return end
 
+        local slspkind_status_ok, lspkind = pcall(require, "lspkind")
+        if not slspkind_status_ok then return end
+
         require("luasnip/loaders/from_vscode").lazy_load()
+        require("luasnip.loaders.from_lua").lazy_load()
+        require("luasnip.loaders.from_snipmate").lazy_load()
 
         local check_backspace = function()
             local col = vim.fn.col "." - 1
@@ -94,25 +99,26 @@ return {
                 end, {"i", "s"})
             },
             formatting = {
-                fields = {"kind", "abbr", "menu"},
                 format = function(entry, vim_item)
                     -- Kind icons
-                    vim_item.kind = string.format("%s",
-                                                  kind_icons[vim_item.kind])
-                    -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+                    vim_item.kind = string.format('%s %s',
+                                                  kind_icons[vim_item.kind],
+                                                  vim_item.kind) -- This concatonates the icons with the name of the item kind
+                    -- Source
                     vim_item.menu = ({
-                        nvim_lsp = "[LSP]",
-                        luasnip = "[Snippet]",
                         buffer = "[Buffer]",
-                        path = "[Path]"
+                        nvim_lsp = "[LSP]",
+                        luasnip = "[LuaSnip]",
+                        nvim_lua = "[Lua]",
+                        latex_symbols = "[LaTeX]"
                     })[entry.source.name]
                     return vim_item
                 end
             },
-            sources = {
+            sources = cmp.config.sources({
                 {name = "nvim_lsp"}, {name = "luasnip"}, {name = "buffer"},
-                {name = "path"}
-            },
+                {name = "path"}, {name = 'vsnip'}
+            }, {{name = 'buffer'}}),
             confirm_opts = {
                 behavior = cmp.ConfirmBehavior.Replace,
                 select = false
@@ -123,6 +129,9 @@ return {
                         "╭", "─", "╮", "│", "╯", "─", "╰", "│"
                     }
                 }
+            },
+            view = {
+                entries = {name = 'custom', selection_order = 'near_cursor'}
             },
             experimental = {ghost_text = false, native_menu = false}
         }

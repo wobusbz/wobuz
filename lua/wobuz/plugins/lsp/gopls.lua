@@ -8,8 +8,15 @@ return {
             root_dir = m.utils.root_pattern("go.work", "go.mod", ".git"),
             single_file_support = true,
             settings = {
-                gopls = {completeUnimported = true, usePlaceholders = true}
-            }
+                gopls = {
+                    completeUnimported = true,
+                    usePlaceholders = true,
+                    experimentalPostfixCompletions = true,
+                    analyses = {unusedparams = true, shadow = true},
+                    staticcheck = true
+                }
+            },
+            init_options = {usePlaceholders = true}
         }
     end
 }
