@@ -12,7 +12,7 @@ return {
                 null_ls.builtins.formatting.golines,
                 null_ls.builtins.formatting.clang_format,
                 null_ls.builtins.formatting.rustfmt,
-                null_ls.builtins.formatting.lua_format,
+                null_ls.builtins.formatting.lua_format
             },
             debug = false,
             on_attach = function(client, bufnr)
@@ -25,7 +25,7 @@ return {
                         group = augroup,
                         buffer = bufnr,
                         callback = function()
-                            vim.lsp.buf.formatting_sync()
+                            vim.lsp.buf.format({bufnr = bufnr})
                         end
                     })
                 end
