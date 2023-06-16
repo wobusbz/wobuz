@@ -33,9 +33,9 @@ return {
                                                        require "wobuz.plugins.setting.clangd",
                                                        opts)
                         end
-                        if server_name == "sumneko_lua" then
+                        if server_name == "lua_ls" then
                             opts = vim.tbl_deep_extend("force",
-                                                       require "wobuz.plugins.setting.sumneko_lua",
+                                                       require "wobuz.plugins.setting.lua_ls",
                                                        opts)
                         end
                         require("lspconfig")[server_name].setup(opts)
