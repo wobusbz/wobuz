@@ -10,7 +10,6 @@ return {
     }, {
         "williamboman/mason-lspconfig.nvim",
         dependencies = {"neovim/nvim-lspconfig"},
-        event = "InsertEnter",
         config = function()
             local handler = require("wobuz.plugins.setting.handlers")
             require("mason-lspconfig").setup({
