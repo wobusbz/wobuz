@@ -1,6 +1,4 @@
 -- vim.cmd('autocmd BufEnter * lua require("completion").on_attach()')
-
-
 vim.cmd([[
     augroup TimeoutlenSettings
     autocmd!
@@ -10,3 +8,10 @@ vim.cmd([[
     autocmd InsertLeave * set updatetime=300
   augroup END
 ]])
+
+vim.api.nvim_exec([[
+augroup AutoCmdGroup
+  autocmd!
+  autocmd BufReadPost * lua if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then vim.api.nvim_command("normal! g'\"") end
+augroup END
+]], false)

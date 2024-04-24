@@ -2,55 +2,78 @@ return {
     {
         "williamboman/mason.nvim",
         event = "VeryLazy",
-        cmd = {
-            "Mason", "MasonInstall", "MasonUninstall", "MasonUninstallAll",
-            "MasonLog"
-        },
-        config = function() require('mason').setup() end
+        config = function()
+            require("mason").setup({
+                ui = {
+                    icons = {
+                        package_installed = "✓",
+                        package_pending = "➜",
+                        package_uninstalled = "✗"
+                    },
+                    border = "rounded"
+                }
+            })
+        end
     }, {
         "williamboman/mason-lspconfig.nvim",
-        dependencies = {"neovim/nvim-lspconfig"},
         config = function()
-            local handler = require("wobuz.plugins.setting.handlers")
+            require("mason-lspconfig").setup()
+            require("mason-lspconfig").setup_handlers({
+                -- The first entry (without a key) will be the default handler
+                -- and will be called for each installed server that doesn't have
+                -- a dedicated handler.
+                function(server_name) -- default handler (optional)
+                    require("lspconfig")[server_name].setup({})
+                end
+                -- Next, you can provide a dedicated handler for specific servers.
+                -- For example, a handler override for the `rust_analyzer`:
+                -- ["rust_analyzer"] = function ()
+                --     require("rust-tools").setup {}
+                -- end
+            })
+        end
+    }, {
+        "neovim/nvim-lspconfig",
+        config = function() require("wobuz.plugins.lspconfig.config")() end
+    }, {
+        "jose-elias-alvarez/null-ls.nvim",
+        dependencies = {"nvim-lua/plenary.nvim"},
+        config = function()
+            local null_ls = require("null-ls")
+            local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-            local lspconfig = require("lspconfig")
-            require("mason-lspconfig").setup({
-                handlers = {
-                    function(server_name) -- default handler (optional)
-                        local opts = {
-                            on_attach = handler.on_attach,
-                            capabilities = handler.capabilities,
-                            flags = {
-                                allow_incremental_sync = false,
-                                debounce_text_changes = 500
-                            }
-                        }
-                        if server_name == "gopls" then
-                            opts = vim.tbl_deep_extend("force",
-                                                       require "wobuz.plugins.setting.gopls",
-                                                       opts)
-                        end
-                        if server_name == "clangd" then
-                            opts = vim.tbl_deep_extend("force",
-                                                       require "wobuz.plugins.setting.clangd",
-                                                       opts)
-                            opts.root_pattern =
-                                lspconfig.util.root_pattern('.clangd',
-                                                            '.clang-tidy',
-                                                            '.clang-format',
-                                                            'compile_commands.json',
-                                                            'compile_flags.txt',
-                                                            'configure.ac',
-                                                            '.git')
-                        end
-                        if server_name == "lua_ls" then
-                            opts = vim.tbl_deep_extend("force",
-                                                       require "wobuz.plugins.setting.lua_ls",
-                                                       opts)
-                        end
-                        lspconfig[server_name].setup(opts)
-                    end
-                }
+            null_ls.setup({
+                border = "rounded",
+                cmd = {"nvim"},
+                debounce = 250,
+                debug = false,
+                default_timeout = 5000,
+                diagnostic_config = {},
+                diagnostics_format = "#{m}",
+                fallback_severity = vim.diagnostic.severity.ERROR,
+                log_level = "warn",
+                notify_format = "[null-ls] %s",
+                on_init = nil,
+                on_exit = nil,
+                root_dir = require("null-ls.utils").root_pattern(
+                    ".null-ls-root", "Makefile", ".git"),
+                should_attach = nil,
+                sources = nil,
+                temp_dir = nil,
+                update_in_insert = false
+            }) -- end of setup
+        end
+    }, {
+        "jay-babu/mason-null-ls.nvim",
+        event = {"BufReadPre", "BufNewFile"},
+        dependencies = {
+            "williamboman/mason.nvim", "jose-elias-alvarez/null-ls.nvim"
+        },
+        config = function()
+            require("mason-null-ls").setup({
+                automatic_setup = true,
+                ensure_installed = {"shfmt", "prettier", "stylua"},
+                handlers = {}
             })
         end
     }

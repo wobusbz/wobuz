@@ -18,6 +18,7 @@ local options = {
     swapfile = false, -- creates a swapfile
     termguicolors = true, -- set term gui colors (most terminals support this)
     timeoutlen = 300, -- time to wait for a mapped sequence to complete (in milliseconds)
+    timeout = true,
     undofile = true, -- enable persistent undo
     updatetime = 300, -- faster completion (4000ms default)
     writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
@@ -29,11 +30,10 @@ local options = {
     relativenumber = false, -- set relative numbered lines
     numberwidth = 4, -- set number column width to 2 {default 4}
     signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
-    wrap = true, -- display lines as one long line
+    wrap = false, -- display lines as one long line
     linebreak = true, -- companion to wrap, don't split words
     scrolloff = 8, -- minimal number of screen lines to keep above and below the cursor
     sidescrolloff = 8, -- minimal number of screen columns either side of cursor if wrap is `false`
-    guifont = "monospace:h100", -- the font used in graphical neovim applications
     whichwrap = "bs<>[]hl" -- which "horizontal" keys are allowed to travel to prev/next line
 }
 
@@ -41,6 +41,7 @@ for k, v in pairs(options) do vim.opt[k] = v end
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+vim.o.guifont = "Menlo:h20" -- the font used in graphical neovim applications
 
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
