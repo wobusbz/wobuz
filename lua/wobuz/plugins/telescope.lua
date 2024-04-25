@@ -1,7 +1,6 @@
 return {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.1',
-    -- or                              , branch = '0.1.1',
     dependencies = {'nvim-lua/plenary.nvim'},
     event = "VeryLazy",
     cmd = "Telescope",
@@ -11,9 +10,7 @@ return {
             vim.notify("telescope not found")
             return
         end
-
         local actions = require("telescope.actions")
-
         telecope.setup {
             defaults = {
                 entry_prefix = "  ",
@@ -27,8 +24,6 @@ return {
                     "--line-number", "--column", "--smart-case", "--hidden",
                     "--glob=!.git/"
                 },
-                -- Default configuration for telescope goes here:
-                -- config_key = value,
                 mappings = {
                     i = {
                         ["<C-j>"] = actions.move_selection_next,
@@ -51,38 +46,13 @@ return {
                 }
             },
             pickers = {
-                -- Default configuration for builtin pickers goes here:
-                -- picker_name = {
-                --   picker_config_key = value,
-                --   ...
-                -- }
-                -- Now the picker_config_key will be applied every time you call this
-                -- builtin picker
-                -- find_files = {hidden = true,theme = "dropdown"},
-                live_grep = {
-                    -- @usage don't include the filename in the search results
-                    only_sort_text = true
-                },
+                live_grep = {only_sort_text = true},
                 grep_string = {only_sort_text = true},
                 planets = {show_pluto = true, show_moon = true},
                 git_files = {hidden = false, show_untracked = true},
                 colorscheme = {enable_preview = true}
             },
-            extensions = {
-                -- Your extension configuration goes here:
-                -- extension_name = {
-                --   extension_config_key = value,
-                -- }
-                -- please take a look at the readme of the extension you want to configure
-                -- fzf = {
-                --     fuzzy = true, -- false will only do exact matching
-                --     override_generic_sorter = true, -- override the generic sorter
-                --     override_file_sorter = true, -- override the file sorter
-                --     case_mode = "smart_case" -- or "ignore_case" or "respect_case"
-                -- }
-            }
+            extensions = {}
         }
-
-        -- telecope.load_extension('fzf')
     end
 }

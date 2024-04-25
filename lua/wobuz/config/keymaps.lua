@@ -56,7 +56,6 @@ local defaults = {
         -- QuickFix
         ["]q"] = ":cnext<CR>",
         ["[q"] = ":cprev<CR>",
-        --        ["<C-q>"] = ":call QuickFixToggle()<CR>",
 
         -- nvim-tree
         ["<leader>e"] = "<cmd>NvimTreeToggle<CR>",
@@ -71,8 +70,6 @@ local defaults = {
         ["<leader>s"] = "<cmd>Telescope grep_string<cr>",
         ["<leader>fb"] = "<cmd>Telescope buffers<cr>",
         ["<leader>fh"] = "<cmd>Telescope help_tags<cr>",
-        -- git
-        ["<leader>gl"] = "<cmd>lua require 'gitsigns'.blame_line()<cr>",
         -- lspsaga
         ["<leader>g"] = "<cmd>Lspsaga lsp_finder<CR>",
         ["<leader>c"] = "<cmd>Lspsaga code_action<cr>",

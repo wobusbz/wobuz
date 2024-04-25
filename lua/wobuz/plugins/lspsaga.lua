@@ -52,7 +52,6 @@ return {
             request_timeout = 2000,
             beacon = {enable = true, frequency = 7},
             server_filetype_map = {}
-
         })
     end
 }

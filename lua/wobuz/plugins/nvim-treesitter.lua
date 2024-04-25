@@ -11,7 +11,6 @@ return {
             ensure_installed = {"c", "go", "rust"},
             sync_install = false,
             auto_install = false,
-
             highlight = {
                 enable = true,
                 disable = function(_, buf)
