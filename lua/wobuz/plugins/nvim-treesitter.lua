@@ -1,7 +1,7 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    -- build = ":TSUpdate",
-    event = "User FileOpened",
+    build = ":TSUpdate",
+    event = {"BufReadPost", "BufNewFile"},
     cmd = {
         "TSInstall", "TSUninstall", "TSUpdate", "TSUpdateSync", "TSInstallInfo",
         "TSInstallSync", "TSInstallFromGrammar"
@@ -13,6 +13,7 @@ return {
             auto_install = false,
             highlight = {
                 enable = true,
+                use_languagetree = true,
                 disable = function(_, buf)
                     local max_filesize = 100 * 1024 -- 100 KB
                     local ok, stats = pcall(vim.loop.fs_stat,
@@ -20,9 +21,10 @@ return {
                     if ok and stats and stats.size > max_filesize then
                         return true
                     end
-                end,
-                additional_vim_regex_highlighting = false
-            }
+                end
+            },
+            additional_vim_regex_highlighting = false,
+            indent = {enable = true}
         }
     end
 }

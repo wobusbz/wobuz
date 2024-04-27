@@ -5,25 +5,18 @@ return {
         {"nvim-tree/nvim-web-devicons"}, {"nvim-treesitter/nvim-treesitter"}
     },
     config = function()
-        local status, lspsaga = pcall(require, 'lspsaga')
-        if not status then
-            vim.notify("lspsaga not found")
-            return
-        end
-        lspsaga.setup({
+        require('lspsaga').setup({
             ui = {
-                normal_bg = "#022746",
-                border = 'rounded',
+                border = 'single',
+                devicon = true,
                 title = true,
-                winblend = 0,
-                expand = '',
-                collapse = '',
+                expand = '⊞',
+                collapse = '⊟',
                 code_action = '💡',
-                diagnostic = '🐞',
-                incoming = ' ',
-                outgoing = ' ',
-                hover = ' ',
-                kind = {}
+                actionfix = ' ',
+                lines = {'┗', '┣', '┃', '━', '┏'},
+                kind = {},
+                imp_sign = '󰳛 '
             },
             diagnostic = {
                 show_code_action = true,

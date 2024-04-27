@@ -10,25 +10,27 @@ return {
     config = function()
         local nvim_tree = require("nvim-tree");
         nvim_tree.setup {
-            update_focused_file = {
-                enable = true,
-                update_cwd = true,
-                ignore_list = {"help"}
-            },
             renderer = {
                 root_folder_modifier = ":t",
-                full_name = true,
-                group_empty = true,
-                special_files = {},
-                symlink_destination = false,
+                root_folder_label = ":~:s?$?/..?",
+                highlight_git = true,
+                highlight_opened_files = "none",
                 indent_markers = {enable = true},
                 icons = {
+                    show = {
+                        file = true,
+                        folder = true,
+                        folder_arrow = true,
+                        git = true
+                    },
                     glyphs = {
                         default = "",
                         symlink = "",
+                        bookmark = "󰆤",
+                        modified = "●",
                         folder = {
-                            arrow_open = "",
                             arrow_closed = "",
+                            arrow_open = "",
                             default = "",
                             open = "",
                             empty = "",
@@ -37,11 +39,11 @@ return {
                             symlink_open = ""
                         },
                         git = {
-                            unstaged = "",
-                            staged = "S",
+                            unstaged = "✗",
+                            staged = "✓",
                             unmerged = "",
                             renamed = "➜",
-                            untracked = "U",
+                            untracked = "★",
                             deleted = "",
                             ignored = "◌"
                         }
@@ -58,43 +60,22 @@ return {
                     error = ""
                 }
             },
+            filters = {dotfiles = false},
+            disable_netrw = true,
+            hijack_netrw = true,
+            hijack_cursor = true,
+            hijack_unnamed_buffer_when_opening = false,
+            sync_root_with_cwd = true,
+            update_focused_file = {enable = true, update_root = false},
             view = {
-                width = 30,
+                adaptive_size = false,
                 side = "left",
-                mappings = {
-                    list = {
-                        {key = {"o", "<2-LeftMouse>"}, action = "edit"},
-                        {key = "v", action = "vsplit"}, -- h分屏打开文件
-                        {key = "h", action = "split"}, -- Ignore (node_modules)
-                        {key = "i", action = "toggle_ignored"}, -- Hide (dotfiles)
-                        {key = ".", action = "toggle_dotfiles"},
-                        {key = "R", action = "refresh"},
-                        {key = "h", action = "close_node"},
-                        {key = "v", action = "vsplit"},
-                        {key = "C", action = "cd"},
-                        {key = "a", action = "create"},
-                        {key = "d", action = "remove"},
-                        {key = "r", action = "rename"},
-                        {key = "x", action = "cut"},
-                        {key = "c", action = "copy"},
-                        {key = "p", action = "paste"},
-                        {key = "y", action = "copy_name"},
-                        {key = "Y", action = "copy_path"},
-                        {key = "gy", action = "copy_absolute_path"},
-                        {key = "I", action = "toggle_file_info"},
-                        {key = "n", action = "tabnew"}
-                    }
-                }
+                width = 30,
+                preserve_window_proportions = true
             },
-            actions = {
-                change_dir = {enable = false, restrict_above_cwd = true},
-                open_file = {
-                    resize_window = true,
-                    window_picker = {chars = "aoeui"}
-                },
-                remove_file = {close_window = false}
-            },
-            filters = {custom = {"^.git$", "^.vscode"}}
+            git = {enable = true, ignore = true},
+            filesystem_watchers = {enable = true},
+            actions = {open_file = {resize_window = true}}
         }
     end
 }

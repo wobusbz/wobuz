@@ -37,30 +37,12 @@ return {
                 diagnostics_update_in_insert = false,
                 offsets = {
                     {
-                        filetype = "undotree",
-                        text = "Undotree",
-                        highlight = "PanelHeading",
-                        padding = 1
-                    }, {
                         filetype = "NvimTree",
-                        text = "Explorer",
-                        highlight = "PanelHeading",
-                        padding = 1
-                    }, {
-                        filetype = "DiffviewFiles",
-                        text = "Diff View",
-                        highlight = "PanelHeading",
-                        padding = 1
-                    }, {
-                        filetype = "flutterToolsOutline",
-                        text = "Flutter Outline",
-                        highlight = "PanelHeading"
-                    },
-                    {
-                        filetype = "lazy",
-                        text = "Lazy",
-                        highlight = "PanelHeading",
-                        padding = 1
+                        text = function()
+                            return vim.fn.getcwd()
+                        end,
+                        highlight = "Directory",
+                        text_align = "left"
                     }
                 },
                 show_buffer_icons = true, -- disable filetype icons for buffers

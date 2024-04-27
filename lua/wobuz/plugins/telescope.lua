@@ -41,7 +41,8 @@ return {
                         ["<C-q>"] = function(...)
                             actions.smart_send_to_qflist(...)
                             actions.open_qflist(...)
-                        end
+                        end,
+                        ["q"] = require("telescope.actions").close
                     }
                 }
             },

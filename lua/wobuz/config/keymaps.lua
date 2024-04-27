@@ -71,18 +71,13 @@ local defaults = {
         ["<leader>fb"] = "<cmd>Telescope buffers<cr>",
         ["<leader>fh"] = "<cmd>Telescope help_tags<cr>",
         -- lspsaga
-        ["<leader>g"] = "<cmd>Lspsaga lsp_finder<CR>",
-        ["<leader>c"] = "<cmd>Lspsaga code_action<cr>",
-        ["<leader>v"] = "<cmd>Lspsaga hover_doc<CR>",
-        ["<leader>r"] = "<cmd>Lspsaga rename<cr>",
+        ["gd"] = "<cmd>Lspsaga goto_definition<CR>",
+        ["gD"] = "<cmd>Lspsaga peek_definition<CR>",
+        ["gi"] = "<cmd>Lspsaga finder imp<CR>",
+        ["K"] = "<cmd>Lspsaga hover_doc ++keep<CR>",
+        ["<leader>rn"] = "<cmd>Lspsaga rename<cr>",
         ["<leader>d"] = "ddkk<cr>",
-        ["<Esc>"] = "<cmd>nohl<cr>",
-
-        ["gd"] = "<cmd>lua vim.lsp.buf.definition()<cr>",
-        ["gD"] = "<cmd>lua vim.lsp.buf.declaration()<cr>",
-        ["gr"] = "<cmd>lua vim.lsp.buf.references()<cr>",
-        ["gs"] = "<cmd>lua vim.lsp.buf.signature_help()<cr>",
-        ["<leader>w"] = "<cmd>Lspsaga hover_doc ++keep<CR>"
+        ["<Esc>"] = "<cmd>nohl<cr>"
     },
     term_mode = {
         -- Terminal window navigation
