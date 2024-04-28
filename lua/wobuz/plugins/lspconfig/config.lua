@@ -1,7 +1,7 @@
 return function()
     require("lspconfig.ui.windows").default_options.border = "rounded"
 
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
     capabilities.offsetEncoding = 'utf-8'
     capabilities.textDocument.completion.completionItem = {
         documentationFormat = {"markdown", "plaintext"},
