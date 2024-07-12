@@ -1,4 +1,4 @@
-local generic_opts_any = {noremap = true, silent = true}
+local generic_opts_any = { noremap = true, silent = true }
 
 local generic_opts = {
     insert_mode = generic_opts_any,
@@ -7,7 +7,7 @@ local generic_opts = {
     visual_block_mode = generic_opts_any,
     command_mode = generic_opts_any,
     operator_pending_mode = generic_opts_any,
-    term_mode = {silent = true}
+    term_mode = { silent = true }
 }
 
 local mode_adapters = {
@@ -104,11 +104,11 @@ local defaults = {
         -- runs conditionally
         ["<C-j>"] = {
             'pumvisible() ? "\\<C-n>" : "\\<C-j>"',
-            {expr = true, noremap = true}
+            { expr = true, noremap = true }
         },
         ["<C-k>"] = {
             'pumvisible() ? "\\<C-p>" : "\\<C-k>"',
-            {expr = true, noremap = true}
+            { expr = true, noremap = true }
         }
     }
 }

@@ -18,12 +18,10 @@ return {
                 ["<C-f>"] = cmp.mapping.scroll_docs(4),
                 ["<C-Space>"] = cmp.mapping.complete(),
                 ["<C-e>"] = cmp.mapping.close(),
-
                 ["<CR>"] = cmp.mapping.confirm {
                     behavior = cmp.ConfirmBehavior.Insert,
                     select = true
                 },
-
                 ['<Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item()
@@ -32,7 +30,7 @@ return {
                     else
                         fallback()
                     end
-                end, {'i', 's'}),
+                end, { 'i', 's' }),
                 ['<S-Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_prev_item()
@@ -41,11 +39,11 @@ return {
                     else
                         fallback()
                     end
-                end, {'i', 's'})
+                end, { 'i', 's' })
             },
             sources = {
-                {name = "nvim_lsp"}, {name = "luasnip"}, {name = "buffer"},
-                {name = "nvim_lua"}, {name = "path"}
+                { name = "nvim_lsp" }, { name = "luasnip" }, { name = "buffer" },
+                { name = "nvim_lua" }, { name = "path" }
             },
             confirm_opts = {
                 behavior = cmp.ConfirmBehavior.Replace,
@@ -54,14 +52,13 @@ return {
             window = {
                 completion = cmp.config.window.bordered(),
                 documentation = cmp.config.window.bordered()
-
             },
             snippet = {
                 expand = function(args)
                     require("luasnip").lsp_expand(args.body)
                 end
             },
-            experimental = {ghost_text = false, native_menu = false}
+            experimental = { ghost_text = false, native_menu = false }
         }
     end
 }

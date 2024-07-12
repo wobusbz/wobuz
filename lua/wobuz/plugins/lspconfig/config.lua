@@ -4,16 +4,16 @@ return function()
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
     capabilities.offsetEncoding = 'utf-8'
     capabilities.textDocument.completion.completionItem = {
-        documentationFormat = {"markdown", "plaintext"},
+        documentationFormat = { "markdown", "plaintext" },
         snippetSupport = true,
         preselectSupport = true,
         insertReplaceSupport = true,
         labelDetailsSupport = true,
         deprecatedSupport = true,
         commitCharactersSupport = true,
-        tagSupport = {valueSet = {1}},
+        tagSupport = { valueSet = { 1 } },
         resolveSupport = {
-            properties = {"documentation", "detail", "additionalTextEdits"}
+            properties = { "documentation", "detail", "additionalTextEdits" }
         }
     }
     require('lspconfig').clangd.setup {
@@ -25,7 +25,7 @@ return function()
         end,
         settings = {
             Lua = {
-                diagnostics = {globals = {"vim"}},
+                diagnostics = { globals = { "vim" } },
                 maxPreload = 100000,
                 preloadFileSize = 10000
             }

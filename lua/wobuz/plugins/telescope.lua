@@ -1,7 +1,7 @@
 return {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.1',
-    dependencies = {'nvim-lua/plenary.nvim'},
+    dependencies = { 'nvim-lua/plenary.nvim' },
     event = "VeryLazy",
     cmd = "Telescope",
     config = function()
@@ -47,11 +47,11 @@ return {
                 }
             },
             pickers = {
-                live_grep = {only_sort_text = true},
-                grep_string = {only_sort_text = true},
-                planets = {show_pluto = true, show_moon = true},
-                git_files = {hidden = false, show_untracked = true},
-                colorscheme = {enable_preview = true}
+                live_grep = { only_sort_text = true },
+                grep_string = { only_sort_text = true },
+                planets = { show_pluto = true, show_moon = true },
+                git_files = { hidden = false, show_untracked = true },
+                colorscheme = { enable_preview = true }
             },
             extensions = {}
         }

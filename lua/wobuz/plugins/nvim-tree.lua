@@ -1,7 +1,7 @@
 return {
     "nvim-tree/nvim-tree.lua",
     tag = "nightly",
-    dependencies = {"nvim-tree/nvim-web-devicons"},
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     event = "User DirOpened",
     cmd = {
         "NvimTreeToggle", "NvimTreeOpen", "NvimTreeFocus",
@@ -15,7 +15,7 @@ return {
                 root_folder_label = ":~:s?$?/..?",
                 highlight_git = true,
                 highlight_opened_files = "none",
-                indent_markers = {enable = true},
+                indent_markers = { enable = true },
                 icons = {
                     show = {
                         file = true,
@@ -60,22 +60,22 @@ return {
                     error = ""
                 }
             },
-            filters = {dotfiles = false},
+            filters = { dotfiles = false },
             disable_netrw = true,
             hijack_netrw = true,
             hijack_cursor = true,
             hijack_unnamed_buffer_when_opening = false,
             sync_root_with_cwd = true,
-            update_focused_file = {enable = true, update_root = false},
+            update_focused_file = { enable = true, update_root = false },
             view = {
                 adaptive_size = false,
                 side = "left",
                 width = 30,
                 preserve_window_proportions = true
             },
-            git = {enable = true, ignore = true},
-            filesystem_watchers = {enable = true},
-            actions = {open_file = {resize_window = true}}
+            git = { enable = true, ignore = true },
+            filesystem_watchers = { enable = true },
+            actions = { open_file = { resize_window = true } }
         }
     end
 }

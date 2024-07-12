@@ -11,4 +11,3 @@ require("wobuz.config.options")
 require("lazy").setup("wobuz.plugins")
 require("wobuz.config.keymaps")
 require("wobuz.config.autocmds")
-

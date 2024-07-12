@@ -2,7 +2,7 @@ return {
     "glepnir/lspsaga.nvim",
     event = "LspAttach",
     dependencies = {
-        {"nvim-tree/nvim-web-devicons"}, {"nvim-treesitter/nvim-treesitter"}
+        { "nvim-tree/nvim-web-devicons" }, { "nvim-treesitter/nvim-treesitter" }
     },
     config = function()
         require('lspsaga').setup({
@@ -12,9 +12,9 @@ return {
                 title = true,
                 expand = '⊞',
                 collapse = '⊟',
-                code_action = '💡',
+                --code_action = '💡',
                 actionfix = ' ',
-                lines = {'┗', '┣', '┃', '━', '┏'},
+                lines = { '┗', '┣', '┃', '━', '┏' },
                 kind = {},
                 imp_sign = '󰳛 '
             },
@@ -26,11 +26,11 @@ return {
                 custom_fix = nil,
                 custom_msg = nil,
                 text_hl_follow = false,
-                keys = {exec_action = 'o', quit = 'q', go_action = 'g'}
+                keys = { exec_action = 'o', quit = 'q', go_action = 'g' }
             },
             code_action = {
                 num_shortcut = true,
-                keys = {quit = 'q', exec = '<CR>'}
+                keys = { quit = 'q', exec = '<CR>' }
             },
             lightbulb = {
                 enable = true,
@@ -40,10 +40,10 @@ return {
                 sign_priority = 40,
                 virtual_text = false
             },
-            preview = {lines_above = 0, lines_below = 10},
-            scroll_preview = {scroll_down = '<C-f>', scroll_up = '<C-b>'},
+            preview = { lines_above = 0, lines_below = 10 },
+            scroll_preview = { scroll_down = '<C-f>', scroll_up = '<C-b>' },
             request_timeout = 2000,
-            beacon = {enable = true, frequency = 7},
+            beacon = { enable = true, frequency = 7 },
             server_filetype_map = {}
         })
     end
